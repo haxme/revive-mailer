@@ -23,3 +23,5 @@ DEFINE('INTERSECTION_DB_HOST', '127.0.0.1');
 DEFINE('INTERSECTION_DB_NAME', 'name-of-database');
 DEFINE('INTERSECTION_DB_USER', 'name-of-db-user');
 DEFINE('INTERSECTION_DB_PASSWORD', 'password-for-name-of-database');
+DEFINE('INTERSECTION_DB_TABLE', 'name-of-database-target-table');
+DEFINE('INTERSECTION_DB_COLUMN', 'name-of-database-target-table-target-col');
