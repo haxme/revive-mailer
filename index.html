@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="reviveMailer">
+<head>
+    <title>Revive Mailer</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="text/javascript" src="includes/js/angular.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+    <div ng-controller="MainCtrl as ctrl">
+        <div ng-if="ctrl.isAuthorized">
+            <div class="container">
+                <div class="row">
+                    <div ng-if="ctrl.step == 1;" class="col-12 mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Step 1. Filtering
+                            </div>
+                            <div class="card-body">
+                                <h4>Choose Addresses to Exclude</h4>
+                                <span class="badge badge-pill mx-2 py-2 px-2"
+                                      style="cursor: pointer;}"
+                                      ng-class="{'badge-success': contact.isSelected, 'badge-danger': !contact.isSelected}"
+                                      ng-repeat="contact in ctrl.contacts"
+                                      ng-click="contact.isSelected = !contact.isSelected">
+                                    {{contact.address}}
+                                </span>
+                                <hr />
+                                <h4>Exclude Registered IPB4 Addresses</h4>
+                                <label class="switch">
+                                    <input type="checkbox" ng-model="ctrl.intersect">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="card-footer pull-right">
+                                <button class="btn btn-primary" ng-click="ctrl.step = 2;">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.step == 2;" class="col-12 mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Step 2. Composition
+                            </div>
+                            <div class="card-body">
+                                <h4>Body Message</h4>
+                                <hr />
+                                <h4>Choose Inline Images to Include (2 max)</h4>
+                                <hr />
+                                <h4>Choose Attachments to Include (2 max)</h4>
+                            </div>
+                            <div class="card-footer pull-right">
+                                <button class="btn btn-primary d-inline mx-3" ng-click="ctrl.step = 1;">Back</button>
+                                <button class="btn btn-primary d-inline" ng-click="ctrl.step = 3;">Continue</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="ctrl.step == 3;" class="col-12 mt-4">
+                        <div class="card">
+                            <div class="card-header">
+                                Step 3. Mailing
+                            </div>
+                            <div class="card-body">
+                                <h4>Interval between messages</h4>
+                            </div>
+                            <div class="card-footer pull-right">
+                                <button class="btn btn-primary d-inline mx-3" ng-click="ctrl.step = 2;">Back</button>
+                                <button class="btn btn-primary d-inline">Send!</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="!ctrl.isAuthorized">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-6 mt-4">
+                        <div class="alert alert-danger" role="alert">
+                            Authorization is required to access this page!
+                        </div>
+                        <div class="input-group">
+                            <input type="text"
+                                   class="form-control"
+                                   ng-model="ctrl.authCode" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary"
+                                        ng-click="ctrl.login()"
+                                        ng-disabled="ctrl.isAuthorizing"
+                                        type="button">Auth
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

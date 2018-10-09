@@ -1,11 +1,12 @@
 <?php
 
+DEFINE('AUTH_CODE', 'password-for-ui-auth');
+
 DEFINE('FROM_ADDRESS', 'your-email@domain.tld');
 DEFINE('FROM_ADDRESS_PASSWORD', 'password-for-your-email');
 
 DEFINE('RECIPIENT_SET', []);
-DEFINE('RECIPIENT_SET_FILE', '/absolute/path/to/set.txt');
-DEFINE('RECIPIENT_SET_FILE_DELIMITER', ',');
+DEFINE('RECIPIENT_SET_JSON_FILE', '/absolute/path/to/set.json');
 
 DEFINE('SMTP_SRV', 'smtp1.server.tld;smtp2.server.tld');
 DEFINE('SMTP_PORT', 587);
